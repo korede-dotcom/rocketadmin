@@ -44,7 +44,7 @@ const BodyLayout = ({children,active}) => {
           <img src={Logo} style={{height:"100%",width:"100%"}}/>
         </div>
         <Menu
-          defaultOpenKeys={[window.location.pathname]}
+          defaultOpenKeys={[window.location.pathname.replace("/","")]}
           defaultSelectedKeys={[`${active}`]}
           // onClickMenuItem={(key) =>
           //   Message.info({
