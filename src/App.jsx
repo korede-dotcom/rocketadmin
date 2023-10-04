@@ -12,6 +12,7 @@ import {
 
 import {styled} from "styled-components"
 import Dashboard from './Routes/Dashboard'
+import Agent from './Routes/Agent'
 function App() {
   return (
       <Router>
@@ -22,7 +23,7 @@ function App() {
             {/* Dashboard Routes */}
             {/* <Route element={<ProtectedRoute />}> */}
               <Route path='/dashboard' element={<Dashboard/>} />
-              <Route path='/agent' element={<Dashboard/>} />
+              <Route path='/agent' element={<Agent/>} />
            
             {/* </Route> */}
             <Route path='*' element={<h1>Error</h1>} />

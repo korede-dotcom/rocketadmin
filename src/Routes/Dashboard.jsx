@@ -6,6 +6,7 @@ import CountryFlag from "react-country-flag";
 
 import { styled } from "styled-components";
 import CountryDropdown from "../reuseables/CountryDropdown";
+import CustomTable from "../reuseables/CustomTable";
 function Dashboard() {
   const [count, setCount] = useState(0);
 
@@ -356,6 +357,7 @@ function Dashboard() {
               </div>
             </div>
           </div>
+          <CustomTable/>
         </Content>
       </BodyLayout>
     </>
