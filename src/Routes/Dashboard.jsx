@@ -8,7 +8,7 @@ import { styled } from "styled-components";
 import CountryDropdown from "../reuseables/CountryDropdown";
 function Dashboard() {
   const [count, setCount] = useState(0);
-  // testing
+
   return (
     <>
       <BodyLayout>
