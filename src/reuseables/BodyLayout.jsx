@@ -45,7 +45,7 @@ const BodyLayout = ({children,active}) => {
         </div>
         <Menu
           defaultOpenKeys={[window.location.pathname.replace("/","")]}
-          defaultSelectedKeys={[`${active}`]}
+          defaultSelectedKeys={[window.location.pathname.replace("/","")]}
           // onClickMenuItem={(key) =>
           //   Message.info({
           //     content: `You select ${key}`,
