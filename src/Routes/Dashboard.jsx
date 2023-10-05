@@ -7,6 +7,15 @@ import CountryFlag from "react-country-flag";
 import { styled } from "styled-components";
 import CountryDropdown from "../reuseables/CountryDropdown";
 import CustomTable from "../reuseables/CustomTable";
+import PaymentType from "../Graphs/PaymentType";
+import { loadericon } from "../../public/ICON";
+import Transactions from "../Graphs/Transactions";
+import TransactionRecord from "../ChartComponent/TransactionRecord";
+import PaymentTypeRecord from "../ChartComponent/PaymentTypeRecord";
+import BranchWise from "../TableComponent/BranchWise";
+import CountryRates from "../TableComponent/CountryRates";
+import Transferlist from "../TableComponent/Transferlist";
+import NewCustomerList from "../TableComponent/NewCustomerList";
 function Dashboard() {
   const [count, setCount] = useState(0);
 
@@ -357,7 +366,78 @@ function Dashboard() {
               </div>
             </div>
           </div>
-          <CustomTable/>
+          {/* Bar Chart Components Stamp */}
+          <div className="PaymentTypeChart">
+            <div className="Payment">
+              <div className="type">
+                <p>Payment Type</p>
+                <span>Shows a snapshot of payment types of your business</span>
+              </div>
+              <div className="paymentmethod">
+                <div className="card">
+                  <div className="color1"></div>
+                  <span>Pay By Card</span>
+                </div>
+                <div className="card">
+                  <div className="color2"></div>
+                  <span>Pay By Cash</span>
+                </div>
+                <div className="card">
+                  <div className="color3"></div>
+                  <span>Bank Transfer</span>
+                </div>
+                <div className="card">
+                  <div className="color4"></div>
+                  <span>Pay By Bank</span>
+                </div>
+              </div>
+              <PaymentType />
+            </div>
+            {/* Three Shold Stamp */}
+            <div className="monthlyThreshold">
+              <div className="flexhold">
+                <div className="type">
+                  <p>Monthly Threshold</p>
+                  <span>
+                    Shows a snapshot of monthly threshold on your system
+                  </span>
+                </div>
+                <CountryDropdown defaultValue={"Nigeria"} />
+              </div>
+
+              <div className="score">
+                <span>Threshold Score</span>
+                <img src={loadericon} alt="" />
+              </div>
+              <div className="feeslimit">
+                <div className="limit">
+                  <p>Threshold Limit</p>
+                  <span>2,350,000,90</span>
+                </div>
+                <div className="limit">
+                  <p>Total amount (including fee)</p>
+                  <span>115,439,.09</span>
+                </div>
+                <div className="limit">
+                  <p>Total fee</p>
+                  <span>0.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Transaction Chart Stamp */}
+          <div className="PaymentTypeChart2">
+            <TransactionRecord />
+            <PaymentTypeRecord />
+          </div>
+          <div className="PaymentTypeChart2">
+            <BranchWise />
+            <CountryRates />
+          </div>
+          <Transferlist />
+          <NewCustomerList />
+          <CustomTable />
         </Content>
       </BodyLayout>
     </>
@@ -365,6 +445,120 @@ function Dashboard() {
 }
 
 const Content = styled.div`
+  .limit {
+    display: flex;
+    justify-content: space-between;
+  }
+  .limit p {
+    font-size: 14px;
+    font-weight: 500;
+    color: #5a6376;
+  }
+  .limit span {
+    color: #464f60;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .feeslimit {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 20px 20px 20px;
+  }
+  .score {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 40px 20px 20px 20px;
+  }
+  .score span {
+    font-size: 16px;
+    font-weight: 400;
+    color: #5a6376;
+    line-height: 19.36px;
+  }
+  .flexhold {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .monthlyThreshold {
+    background-color: white;
+    border-radius: 10px;
+  }
+  .PaymentTypeChart {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    padding: 30px 0px 30px 0px;
+    gap: 10px;
+  }
+  .PaymentTypeChart2 {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 30px 0px 30px 0px;
+    gap: 10px;
+  }
+  .Payment {
+    background-color: white;
+    border-radius: 10px;
+    padding-left: 10px;
+  }
+  .type {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .type p {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 29.05px;
+  }
+  .type span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #909090;
+  }
+  .paymentmethod {
+    padding: 20px 20px 40px 20px;
+    display: flex;
+    gap: 20px;
+  }
+  .color1 {
+    background-color: #2a278f;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+  }
+  .color2 {
+    background-color: #d94040;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+  }
+  .color3 {
+    background-color: #d94040;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+  }
+  .color4 {
+    background-color: #d94040;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+  }
+  .card {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .card span {
+    font-size: 14px;
+    color: #464f60;
+    font-weight: 500;
+    line-height: 16.94px;
+  }
   .content1 {
     display: flex;
     gap: 10px;
