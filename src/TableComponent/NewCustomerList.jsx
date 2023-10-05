@@ -21,7 +21,9 @@ function NewCustomerList() {
             See All <AiOutlineArrowRight size={17} />
           </button>
         </div>
-        <SearchInput placeholder="Search Records" />
+        <div className="top">
+          <SearchInput placeholder="Search Records" className="SearchRecords" />
+        </div>
         <table className="table">
           <thead>
             <tr>
@@ -143,6 +145,10 @@ function NewCustomerList() {
 
 export default NewCustomerList;
 const Content = styled.div`
+  .top {
+    padding: 10px 30px 30px 20px;
+  }
+
   .tablecontent {
     background-color: white;
     margin-bottom: 30px;
