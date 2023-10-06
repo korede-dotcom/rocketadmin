@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 import Modal from "../reuseables/Modal";
 import { AiOutlineDown } from "react-icons/ai";
 import AppInput from "../reuseables/AppInput";
+import Appbutton from "../reuseables/Appbutton";
 function CustomerFilter({ closeCustomer }) {
   return (
     <Content>
@@ -110,6 +111,24 @@ function CustomerFilter({ closeCustomer }) {
             <span>Latest ID Uploaded</span>
           </div>
         </div>
+        <div className="btn">
+          <Appbutton
+            placeholder="Cancel"
+            style={{
+              backgroundColor: "transparent",
+              border: "1px solid gainsboro",
+            }}
+            onClick={() => closeCustomer(false)(false)}
+          />
+          <Appbutton
+            placeholder="Invite"
+            style={{
+              backgroundColor: "#00A85A",
+              color: "white",
+              border: "1px solid #00A85A",
+            }}
+          />
+        </div>
       </Modal>
     </Content>
   );
@@ -156,5 +175,10 @@ const Content = styled.div`
     width: 20px;
     height: 20px;
     border: 1px solid gainsboro;
+  }
+  .btn {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
   }
 `;
