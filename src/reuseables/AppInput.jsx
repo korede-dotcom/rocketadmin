@@ -1,12 +1,13 @@
 import React from "react";
 import { styled } from "styled-components";
-function AppInput({ value, onChange, placeholder, width }) {
+
+function AppInput({ placeholder, value, onChange, width, type }) {
   return (
     <Content>
       <div className="top">
         <input
           style={{ width: width }}
-          type="text"
+          type={type}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
@@ -19,10 +20,15 @@ function AppInput({ value, onChange, placeholder, width }) {
 export default AppInput;
 const Content = styled.div`
   .top input {
+    padding: 10px;
     width: 100%;
-    padding: 15px;
-    outline: none;
-    border: 1px solid gainsboro;
     border-radius: 5px;
+    border: 1px solid gainsboro;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .top ::placeholder {
+    font-size: 14px;
+    font-weight: 500;
   }
 `;

@@ -56,12 +56,17 @@ const Content = styled.div`
   }
   .white {
     background-color: white;
+    position: relative;
     border-radius: 10px;
-    width: 30%;
+    width: 100%;
+    max-height: 50%;
+    max-width: 600px;
+    overflow: hidden;
+    overflow: scroll;
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    padding: 30px;
+    gap: 20px;
+    padding: 20px 30px 30px 30px;
   }
   .main {
     display: flex;
@@ -73,4 +78,8 @@ const Content = styled.div`
     font-weight: 500;
     line-height: 28px;
   }
+
+  /* .check input[type="checkbox"]{
+    width: 25px;
+  } */
 `;

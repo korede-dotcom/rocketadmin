@@ -10,11 +10,11 @@ function InviteAgent({ closeinviteAgent }) {
       <Modal title="Invite Agent" onClick={() => closeinviteAgent(false)}>
         <div className="name">
           <label>Agent Name</label>
-          <AppInput placeholder="Enter name" width="93%" />
+          <AppInput placeholder="Enter name" width="95%" />
         </div>
         <div className="name">
           <label>Agent Email Address</label>
-          <AppInput placeholder="Enter email" width="93%" />
+          <AppInput placeholder="Enter email" width="95%" />
         </div>
         <div className="btn">
           <Appbutton
@@ -44,7 +44,7 @@ const Content = styled.div`
   .name {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
   }
   .name label {
     font-weight: 500;
