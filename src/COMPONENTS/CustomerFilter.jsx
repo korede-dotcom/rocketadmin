@@ -113,7 +113,7 @@ function CustomerFilter({ closeCustomer }) {
         </div>
         <div className="btn">
           <Appbutton
-            placeholder="Cancel"
+            placeholder="Reset"
             style={{
               backgroundColor: "transparent",
               border: "1px solid gainsboro",
@@ -121,7 +121,7 @@ function CustomerFilter({ closeCustomer }) {
             onClick={() => closeCustomer(false)(false)}
           />
           <Appbutton
-            placeholder="Invite"
+            placeholder="Apply Filter"
             style={{
               backgroundColor: "#00A85A",
               color: "white",

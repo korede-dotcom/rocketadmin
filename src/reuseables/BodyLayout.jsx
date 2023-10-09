@@ -161,11 +161,18 @@ const BodyLayout = ({ children, active }) => {
             <MenuItem key="2_1" onClick={() => navigate("/customers")}>
               Customers
             </MenuItem>
-            <MenuItem key="2_2">Action Required</MenuItem>
-            <MenuItem key="2_3">Incomplete Registration</MenuItem>
+            <MenuItem key="2_2" onClick={() => navigate("/actionrequired")}>
+              Action Required
+            </MenuItem>
+            <MenuItem
+              key="2_3"
+              onClick={() => navigate("/incompleteregistration")}
+            >
+              Incomplete Registration
+            </MenuItem>
           </SubMenu>
 
-          <MenuItem key="0_4">
+          <MenuItem key="0_4" onClick={() => navigate("/sendmoney")}>
             <svg
               width="30"
               height="15"
@@ -182,7 +189,7 @@ const BodyLayout = ({ children, active }) => {
             </svg>
             Send Money
           </MenuItem>
-          <MenuItem key="0_4">
+          <MenuItem key="0_4" onClick={() => navigate("/beneficiary")}>
             <svg
               width="30"
               height="15"

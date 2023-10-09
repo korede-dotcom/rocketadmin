@@ -12,10 +12,26 @@ import { FiDownloadCloud } from "react-icons/fi";
 import { GoFilter } from "react-icons/go";
 import SearchInput from "../reuseables/SearchInput";
 import InviteAgent from "../COMPONENTS/InviteAgent";
+import { sendAgentInvite } from "../services/Dashboard";
+import { useMutation } from "@tanstack/react-query";
 
 // hhhhhhh
 function Agent() {
   const [inviteAgent, setInviteAgent] = useState(false);
+
+  const { mutate, isLoading, isError } = useMutation({
+    mutationFn: sendAgentInvite,
+    onSuccess: (data) => {},
+    onError: (data) => {
+      setModal(true);
+
+      setTimeout(() => {
+        //  seterr("")
+      }, 2000);
+      return;
+    },
+  });
+
   return (
     <>
       {inviteAgent && <InviteAgent closeinviteAgent={setInviteAgent} />}

@@ -15,6 +15,10 @@ import Dashboard from "./Routes/Dashboard";
 import Agent from "./Routes/Agent";
 import Customers from "./Routes/customers";
 import Login from "./Routes/Login";
+import ActionRequired from "./Routes/ActionRequired";
+import IncompleteRegistration from "./Routes/IncompleteRegistration";
+import SendMoney from "./Routes/SendMoney";
+import Beneficiary from "./Routes/Beneficiary";
 function App() {
   return (
     <Router>
@@ -26,8 +30,14 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/agent" element={<Agent />} />
           <Route path="/customers" element={<Customers />} />
+          <Route path="/actionrequired" element={<ActionRequired />} />
+          <Route
+            path="/incompleteregistration"
+            element={<IncompleteRegistration />}
+          />
+          <Route path="/sendmoney" element={<SendMoney />} />
+          <Route path="/beneficiary" element={<Beneficiary />} />
           <Route path="/" element={<Login />} />
-
 
           {/* </Route> */}
           <Route path="*" element={<h1>Error</h1>} />

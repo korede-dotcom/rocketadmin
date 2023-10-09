@@ -78,7 +78,7 @@ function Customers() {
                     fill="white"
                   />
                 </svg>
-                Invite Agent
+                New Customers
               </button>
             </div>
           </div>

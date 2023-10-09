@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-function AppInput({ placeholder, value, onChange, width, type }) {
+function AppInput({ placeholder, value, onChange, width, type, name }) {
   return (
     <Content>
       <div className="top">
@@ -11,6 +11,7 @@ function AppInput({ placeholder, value, onChange, width, type }) {
           placeholder={placeholder}
           value={value}
           onChange={onChange}
+          name={name}
         />
       </div>
     </Content>
