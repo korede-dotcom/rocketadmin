@@ -402,7 +402,10 @@ function Dashboard() {
                     Shows a snapshot of monthly threshold on your system
                   </span>
                 </div>
-                <CountryDropdown defaultValue={"Nigeria"} />
+                <CountryDropdown
+                  defaultValue={"Nigeria"}
+                  style={{ padding: "20px" }}
+                />
               </div>
 
               <div className="score">

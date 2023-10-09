@@ -13,6 +13,8 @@ function BeneficiaryComponent({ closeBeneficiaryComponent }) {
   const [check, setCheck] = useState(false);
   const [check2, setCheck2] = useState(false);
   const [beneficiaryCheck, setBeneficiaryCheck] = useState(false);
+  const AppData = JSON.parse(localStorage?.getItem("AppData"));
+  console.log(JSON.parse(localStorage?.getItem("AppData")));
   return (
     <Content>
       <div className="top">

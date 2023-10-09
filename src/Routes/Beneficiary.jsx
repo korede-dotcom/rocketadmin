@@ -7,6 +7,8 @@ import AddNewBeneficiary from "../COMPONENTS/AddNewBeneficiary";
 
 function Beneficiary() {
   const [AddBeneficiary, setAddBeneficiary] = useState(false);
+  console.log(JSON.parse(localStorage?.getItem("AppData")));
+
   return (
     <>
       <BodyLayout>

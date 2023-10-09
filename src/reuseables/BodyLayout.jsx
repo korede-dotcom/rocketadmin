@@ -226,6 +226,7 @@ const BodyLayout = ({ children, active }) => {
             </svg>
             Beneficiary
           </MenuItem>
+
           <MenuItem>
             <svg
               width="30"
