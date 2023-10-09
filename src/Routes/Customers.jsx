@@ -7,6 +7,9 @@ import CustomerFilter from "../COMPONENTS/CustomerFilter";
 
 function Customers() {
   const [filter, setFilter] = useState(false);
+  const AppData = JSON.parse(localStorage?.getItem("AppData"));
+  console.log(AppData);
+
   return (
     <>
       {filter && <CustomerFilter closeCustomer={setFilter} />}
@@ -120,9 +123,10 @@ function Customers() {
             <table className="table">
               <thead>
                 <tr>
+                  <th>DATE CREATED</th>
                   <th>S/N </th>
-                  <th>CUSTOMER REF </th>
-                  <th>ID VERIFICATION </th>
+                  <th>COUNTRY </th>
+                  <th>EMAIL </th>
                   <th>COMPLIANCE</th>
                   <th>NAME</th>
                   <th>ADDRESS</th>
@@ -130,7 +134,17 @@ function Customers() {
                   <th>MOBILE NO</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody>
+                {AppData?.data?.users.map((a) => {
+                  return (
+                    <tr>
+                      <td>{a?.dateCreated}</td>
+                      <td>{a?.agentId}</td>
+                      <td>{a?.country?.name}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
             </table>
             <div className="row">
               <span>Showing 1-5 of entries</span>
