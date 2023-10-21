@@ -137,10 +137,13 @@ function Customers() {
               <tbody>
                 {AppData?.data?.users.map((a) => {
                   return (
-                    <tr>
-                      <td>{a?.dateCreated}</td>
+                    <tr className="tabledata">
+                      <td >{a?.dateCreated}</td>
                       <td>{a?.agentId}</td>
                       <td>{a?.country?.name}</td>
+                      <td>{a?.email}</td>
+                      <td>{a?.email}</td>
+                      <td>{a?.firstName}</td>
                     </tr>
                   );
                 })}
@@ -271,7 +274,12 @@ const Content = styled.div`
     align-items: center;
     gap: 10px;
   }
-
+  .tabledata{
+    td{
+      font-size: small;
+      font-weight: 400;
+    }
+  }
   .arrow button {
     width: 28.8px;
     height: 24px;

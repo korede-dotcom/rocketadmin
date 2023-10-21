@@ -3,6 +3,8 @@ import { styled } from "styled-components";
 import PaymentType2 from "../Graphs/PaymentType2";
 
 function PaymentTypeRecord() {
+    const AppData = JSON.parse(localStorage.getItem("AppData"))
+    console.log("🚀 ~ file: PaymentTypeRecord.jsx:7 ~ PaymentTypeRecord ~ AppData:", AppData)
   return (
     <Content>
       <div className="Payment">

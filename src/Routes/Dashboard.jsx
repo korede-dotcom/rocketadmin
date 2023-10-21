@@ -49,10 +49,7 @@ function Dashboard() {
                       <h2>3,534333</h2>
                       <span>Today’s total</span>
                     </div>
-                    <div className="box">
-                      <h2>3,534333</h2>
-                      <span>Today’s total</span>
-                    </div>
+                  
                   </div>
                 </div>
                 <div className="smallbox">
