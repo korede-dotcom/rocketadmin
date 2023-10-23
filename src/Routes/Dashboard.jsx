@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import reactLogo from "../assets/react.svg";
 import viteLogo from "/vite.svg";
 import BodyLayout from "../reuseables/BodyLayout";
@@ -18,6 +18,20 @@ import Transferlist from "../TableComponent/Transferlist";
 import NewCustomerList from "../TableComponent/NewCustomerList";
 function Dashboard() {
   const [count, setCount] = useState(0);
+
+  useEffect(()=> {
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    
+    fetch("https://moneybusiness.tm-dev.xyz/moneybusiness//getuserdashboard/0", requestOptions)
+      .then(response => response.json())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+
+  },[])
+
 
   return (
     <>
