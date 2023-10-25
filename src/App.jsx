@@ -19,6 +19,7 @@ import ActionRequired from "./Routes/ActionRequired";
 import IncompleteRegistration from "./Routes/IncompleteRegistration";
 import SendMoney from "./Routes/SendMoney";
 import Beneficiary from "./Routes/Beneficiary";
+import PayoutDashboard from "./Routes/Dashboard/PayoutDashboard";
 function App() {
   return (
     <Router>
@@ -28,6 +29,7 @@ function App() {
           {/* Dashboard Routes */}
           {/* <Route element={<ProtectedRoute />}> */}
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard-payout" element={<PayoutDashboard />} />
           <Route path="/agent" element={<Agent />} />
           <Route path="/customers" element={<Customers />} />
           <Route path="/actionrequired" element={<ActionRequired />} />
