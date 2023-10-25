@@ -78,10 +78,10 @@ const data = [
   },
 ];
 
-const CustomTable = ({ Apidata }) => {
+const CustomTable = ({ Apidata, tableColumns }) => {
   return (
     <Table
-      columns={columns}
+      columns={tableColumns || columns}
       data={Apidata || data}
       expandedRowRender={(record) =>
         `${record.name}'s address is ${record.address}`

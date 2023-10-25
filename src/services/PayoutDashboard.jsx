@@ -12,6 +12,11 @@ export const getPayoutDashboard = async (userId = 0) => {
   return data;
 };
 
+export const getPayoutClients = async (userId = 0) => {
+  const { data } = await Axios.get(`${baseurl}//getuserbyrole/5`);
+  return data;
+};
+
 export const beneficiaries = async (userId, bid) => {
   const { data } = await Axios.get(
     `${baseurl}moneybusiness/getuserbeneficiaries?userId=${

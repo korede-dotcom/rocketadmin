@@ -101,6 +101,13 @@ const BodyLayout = ({ children, active }) => {
               <MenuItem key="2_1" onClick={() => navigate("/dashboard-payout")}>
                 Overview
               </MenuItem>
+
+              <MenuItem key="2_1" onClick={() => navigate("/clients")}>
+                Clients
+              </MenuItem>
+              <MenuItem key="2_1" onClick={() => navigate("/kyc-providers")}>
+                KYC Providers
+              </MenuItem>
             </SubMenu>
           </SubMenu>
           <MenuItem key="agent" onClick={() => navigate("/agent")}>

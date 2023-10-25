@@ -19,7 +19,8 @@ import ActionRequired from "./Routes/ActionRequired";
 import IncompleteRegistration from "./Routes/IncompleteRegistration";
 import SendMoney from "./Routes/SendMoney";
 import Beneficiary from "./Routes/Beneficiary";
-import PayoutDashboard from "./Routes/Dashboard/PayoutDashboard";
+import PayoutDashboard from "./Routes/Payout/PayoutDashboard";
+import ClientsPage from "./Routes/Payout/Clients";
 function App() {
   return (
     <Router>
@@ -30,6 +31,7 @@ function App() {
           {/* <Route element={<ProtectedRoute />}> */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard-payout" element={<PayoutDashboard />} />
+          <Route path="/clients" element={<ClientsPage />} />
           <Route path="/agent" element={<Agent />} />
           <Route path="/customers" element={<Customers />} />
           <Route path="/actionrequired" element={<ActionRequired />} />
