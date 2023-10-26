@@ -25,6 +25,7 @@ function ClientTable() {
     data: clients,
     isLoading,
     isFetching,
+    isError,
   } = useQuery({
     queryKey: ["clients"],
     queryFn: () => getPayoutClientDashboard(userDetails?.userId),
@@ -144,7 +145,7 @@ function ClientTable() {
               fontWeight: "700",
             }}
           >
-            {item?.isEmailVerified ? "Active" : "In Active"}
+            {item?.isEmailVerified ? "Active" : "Inactive"}
           </div>
         </>
       ),

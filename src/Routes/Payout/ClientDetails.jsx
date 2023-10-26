@@ -1,10 +1,14 @@
-import React from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { getPayoutClientDashboard } from "../../services/PayoutDashboard";
 import { useQuery } from "@tanstack/react-query";
 import BodyLayout from "../../reuseables/BodyLayout";
 import styled from "styled-components";
 import { BackTop, Button } from "@arco-design/web-react";
+import phone from "../../assets/icons/phoneIcon.svg";
+import mail from "../../assets/icons/mailIcon.svg";
+import profile from "../../assets/images/profile.png";
+import Details from "./ClientDetailsTabs/Details";
 
 export default function ClientDetailsPage() {
   const [params] = useSearchParams();
@@ -19,13 +23,24 @@ export default function ClientDetailsPage() {
   });
 
   console.log(client);
+  const clientUser = client?.data;
+  const navigate = useNavigate();
+
+  const [active, setActive] = useState("Profile");
+
+  const tab = ["Profile", "ID Documents", "Transactions", "Charges"];
 
   return (
     <BodyLayout>
       <Client>
         <div className="topBar">
           <div>
-            <div className="back_buttton">
+            <div
+              className="back_buttton"
+              onClick={() => {
+                navigate("/clients");
+              }}
+            >
               <svg
                 width="24"
                 height="24"
@@ -52,7 +67,7 @@ export default function ClientDetailsPage() {
               <span>Back to Clients</span>
             </div>
 
-            <div className="top_name">{client?.data?.username}</div>
+            <div className="top_name">{clientUser?.companyName}</div>
           </div>
 
           <div style={{ display: "flex" }}>
@@ -117,35 +132,299 @@ export default function ClientDetailsPage() {
               <div
                 style={{
                   display: "flex",
-                  alignItems: "center",
+                  alignItems: "flex-start",
+                  justifyContent: "space-between",
                 }}
               >
-                <div className="rounded-full overflow-hidden w-[8vw] h-[8vw] rounded-fulls mr-[2%]">
-                  {/*  <img class="w-full- h-full" src="../../../assets//icon/avatar.png" alt=""> */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    width: "80%",
+                  }}
+                >
+                  <div
+                    className="rounded-full overflow-hidden w-[8vw] h-[8vw] rounded-fulls mr-[2%]"
+                    style={{
+                      borderRadius: "10000px",
+                      overflow: "hidden",
+                      width: "160px",
+                      height: "160px",
+                      marginRight: "2%",
+                    }}
+                  >
+                    <img
+                      className="w-full- h-full"
+                      style={{ width: "100%", height: "100%" }}
+                      src={profile}
+                      alt=""
+                    />
+                  </div>
+                  <div>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: "1.8vw",
+                          textTransform: "capitalize",
+                          marginRight: "10px",
+                        }}
+                      >
+                        {clientUser?.companyName}
+                      </div>
+                      <div
+                        style={{
+                          padding: "8px 16px",
+                          borderRadius: "10000px",
+                          background: clientUser?.isEmailVerified
+                            ? "#63ff706c"
+                            : "#ff63634b",
+                          color: clientUser?.isEmailVerified ? "green" : "red",
+                          width: "fit-content",
+                          fontWeight: "700",
+                        }}
+                      >
+                        {clientUser?.isEmailVerified ? "Active" : "Inactive"}
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        marginBottom: "10px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: "16px",
+                          color: "#63666A",
+                          marginBottom: "3%",
+                        }}
+                      >
+                        Client ID
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "18px",
+                          color: "#333B4A",
+                          fontWeight: "700",
+                          marginBottom: "3%",
+                        }}
+                      >
+                        {clientUser?.clientKeys?.clientId}
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        marginBottom: "40px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: "16px",
+                          color: "#63666A",
+                          marginBottom: "3%",
+                        }}
+                      >
+                        Registration Date
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "18px",
+                          color: "#333B4A",
+                          fontWeight: "700",
+                          marginBottom: "3%",
+                        }}
+                      >
+                        {clientUser?.dateRegistered}
+                      </div>
+                    </div>
+
+                    {/* <div
+                      style={{
+                        marginBottom: "10px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontSize: "16px",
+                          color: "#63666A",
+                          marginBottom: "3%",
+                        }}
+                      >
+                        DOB
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "18px",
+                          color: "#333B4A",
+                          fontWeight: "700",
+                          marginBottom: "3%",
+                        }}
+                      >
+                        {clientUser?.dateRegistered}
+                      </div>
+                    </div> */}
+                  </div>
                 </div>
                 <div>
-                  <div className="text-[1.8vw]">Funke Obafemi</div>
-                  <div className="text-[1vw] text-[#63666A] mb-[3%]">
-                    funkeobafemi@email.com
+                  <div
+                    className="text-[1vw] text-[#909090] my-[2%]"
+                    style={{
+                      fontSize: "22px",
+                      color: "#909090",
+                      marginBottom: "2%",
+                      marginTop: "2%",
+                    }}
+                  >
+                    CONTACT INFORMATION
                   </div>
-                  <div className="text-[0.8vw] bg-[#023D7A] text-white w-fit px-[5%] py-[2%] uppercase rounded-md">
-                    reseller account
+
+                  <div
+                    className="flex items-start my-[5%]"
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      marginBottom: "5%",
+                      marginTop: "5%",
+                    }}
+                  >
+                    <img
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        marginRight: "4px",
+                      }}
+                      className="w-14 h-14 mr-1"
+                      src={mail}
+                      alt=""
+                    />
+                    <div
+                      className="ml-[4%]"
+                      style={{
+                        marginLeft: "4%",
+                      }}
+                    >
+                      <div
+                        className="text-[1vw] mb-[2%]"
+                        style={{
+                          fontSize: "18px",
+                          marginBottom: "2%",
+                        }}
+                      >
+                        Email
+                      </div>
+                      <div
+                        className="text-[1vw] text-[#63666A] mb-[3%]"
+                        style={{
+                          fontSize: "18px",
+                          color: "#63666A",
+                          marginBottom: "3%",
+                        }}
+                      >
+                        {clientUser?.email}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      marginBottom: "5%",
+                      marginTop: "5%",
+                    }}
+                  >
+                    <img
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        marginRight: "4px",
+                      }}
+                      src={phone}
+                      alt=""
+                    />
+                    <div
+                      className="ml-[4%]"
+                      style={{
+                        marginLeft: "4%",
+                      }}
+                    >
+                      <div
+                        className="text-[1vw] mb-[2%]"
+                        style={{
+                          fontSize: "18px",
+                          marginBottom: "2%",
+                        }}
+                      >
+                        Phone
+                      </div>
+                      <div
+                        className="text-[1vw] text-[#63666A] mb-[3%]"
+                        style={{
+                          fontSize: "18px",
+                          color: "#63666A",
+                          marginBottom: "3%",
+                        }}
+                      >
+                        {clientUser?.phone}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="text-[#909090] mt-[4%]">
-                Member Since:{" "}
-                <span className="text-[#212121]">Fri 28th Jul 2023 3:12pm</span>
-              </div>
-              <div className="text-[#909090] my-[4%]">
-                Login ID: <span className="text-[#212121]">abdsm</span>
-              </div>
-              <div className="text-[#909090] flex items-center">
-                Website Status:{" "}
-                <span className="ml-[1.4%] text-[#212121]">hi</span>
               </div>
             </div>
           </div>
+
+          <div
+            style={{
+              marginBottom: "20px",
+              marginTop: "80px",
+              borderBottom: "1px solid #EAECF0",
+              display: "flex",
+            }}
+          >
+            {tab.map((item) => {
+              return (
+                <div
+                  onClick={() => {
+                    setActive(item);
+                  }}
+                  style={{
+                    paddingBottom: "10px",
+                    paddingLeft: "8px",
+                    paddingRight: "8px",
+                    borderBottom:
+                      active !== item
+                        ? "1px solid transparent"
+                        : "1px solid #00A85A",
+                    width: "fit-content",
+                    fontSize: "16px",
+                    cursor: "pointer",
+                    marginRight: "10px",
+                  }}
+                >
+                  <span
+                    style={{
+                      width: "100%",
+                      color: active === item ? "#00A85A" : "#667085",
+                    }}
+                  >
+                    {item}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          {active === "Profile" && <Details clientDetails={clientUser} />}
+          {active === "ID Documents" && <Details clientDetails={clientUser} />}
+          {active === "Transactions" && <Details clientDetails={clientUser} />}
+          {active === "Charges" && <Details clientDetails={clientUser} />}
         </div>
       </Client>
     </BodyLayout>
@@ -161,6 +440,7 @@ const Client = styled.div`
     .back_buttton {
       display: flex;
       align-items: center;
+      cursor: pointer;
 
       span {
         color: #00a85a;
@@ -172,7 +452,9 @@ const Client = styled.div`
     .top_name {
       font-size: 30px;
       margin-top: 10px;
+      margin-bottom: 10px;
       font-weight: 600;
+      text-transform: capitalize;
     }
 
     .fund {
@@ -216,11 +498,12 @@ const Client = styled.div`
     border-radius: 20px;
 
     .left_body {
-      width: 100%;
+      width: 90%;
 
       .profile {
-        font-size: 1vw;
-        margin-bottom: 10px;
+        font-size: 20px;
+        color: "#909090";
+        margin-bottom: 20px;
       }
     }
   }
