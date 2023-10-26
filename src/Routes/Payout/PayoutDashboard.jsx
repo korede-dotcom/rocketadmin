@@ -30,6 +30,7 @@ import {
   getPayoutDashboard,
 } from "../../services/PayoutDashboard";
 import { useSearchParams } from "react-router-dom";
+import { kFormatter, kFormatter2, kFormatter4 } from "../../utils/format";
 function PayoutDashboard() {
   const [userID, setUserID] = useState();
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
@@ -42,7 +43,9 @@ function PayoutDashboard() {
 
   const id = userID;
 
-  console.log(payoutDashboard);
+  const cardDetails = payoutDashboard?.data?.transactionVolume?.NGN;
+
+  console.log();
 
   return (
     <>
@@ -138,7 +141,7 @@ function PayoutDashboard() {
                       </div>
                     </div>
                     <div style={{ fontSize: "40px", fontWeight: "600" }}>
-                      191
+                      {kFormatter4(cardDetails?.successful)}
                     </div>
                   </div>
                   <div
@@ -165,7 +168,9 @@ function PayoutDashboard() {
                         Pending
                       </div>
                     </div>
-                    <div style={{ fontSize: "40px", fontWeight: "600" }}>1</div>
+                    <div style={{ fontSize: "40px", fontWeight: "600" }}>
+                      {kFormatter4(cardDetails?.pending)}
+                    </div>
                   </div>
                   <div
                     className=""
@@ -191,7 +196,7 @@ function PayoutDashboard() {
                       </div>
                     </div>
                     <div style={{ fontSize: "40px", fontWeight: "600" }}>
-                      18
+                      {kFormatter4(cardDetails?.failed)}
                     </div>
                   </div>
                 </div>
