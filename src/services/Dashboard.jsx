@@ -7,7 +7,7 @@ const baseurl = BASE_URL;
 
 export const beneficiaries = async (userId, bid) => {
   const { data } = await Axios.get(
-    `${baseurl}moneybusiness/getuserbeneficiaries?userId=${
+    `${baseurl}/getuserbeneficiaries?userId=${
       userId || 68059751
     }&beneficiaryId=${bid || 0}`
   );
@@ -15,7 +15,7 @@ export const beneficiaries = async (userId, bid) => {
 };
 
 export const getBanks = async (userId, bid) => {
-  const { data } = await Axios.get(`${baseurl}moneybusiness/getbanks`);
+  const { data } = await Axios.get(`${baseurl}/getbanks`);
   return data;
 };
 export const nameEnquiry = async (query) => {
@@ -24,7 +24,7 @@ export const nameEnquiry = async (query) => {
     query?.queryKey
   );
   const { data } = await Axios.get(
-    `${baseurl}moneybusiness/BankDetailsLookUp?bankCode=${query?.queryKey[0]}&accountNumber=${query?.queryKey[1]}`
+    `${baseurl}/BankDetailsLookUp?bankCode=${query?.queryKey[0]}&accountNumber=${query?.queryKey[1]}`
   );
   return data;
 };
@@ -35,24 +35,22 @@ export const Tranx = async (userId) => {
     userId?.queryKey[0]
   );
   const { data } = await Axios.get(
-    `${baseurl}moneybusiness/getuserlog/${userId?.queryKey[0]}`
+    `${baseurl}/getuserlog/${userId?.queryKey[0]}`
   );
   return data;
 };
 export const TransferPurpose = async () => {
-  const { data } = await Axios.get(
-    `${baseurl}moneybusiness/gettransferpurpose`
-  );
+  const { data } = await Axios.get(`${baseurl}/gettransferpurpose`);
   return data;
 };
 
 export const Paymentchannel = async () => {
-  const { data } = await Axios.get(`${baseurl}moneybusiness/getpaymentchannel`);
+  const { data } = await Axios.get(`${baseurl}/getpaymentchannel`);
   return data;
 };
 
 export const Payoutchannel = async () => {
-  const { data } = await Axios.get(`${baseurl}moneybusiness/getpayoutchannel`);
+  const { data } = await Axios.get(`${baseurl}/getpayoutchannel`);
   return data;
 };
 
@@ -62,7 +60,7 @@ export const GetDetails = async (id) => {
     id?.queryKey[0]
   );
   const { data } = await Axios.get(
-    `${baseurl}moneybusiness/getuserdashboard/${id?.queryKey[0]}`
+    `${baseurl}/getuserdashboard/${id?.queryKey[0]}`
   );
   return data;
 };
@@ -70,7 +68,7 @@ export const GetDetails = async (id) => {
 export const Rates = async (query) => {
   const q = query?.queryKey;
   const { data } = await Axios.get(
-    `${baseurl}moneybusiness/getrate?fromCurrencyId=${q[0] || 0}&toCurrencyId=${
+    `${baseurl}/getrate?fromCurrencyId=${q[0] || 0}&toCurrencyId=${
       q[1] || 0
     }&fromAmount=${q[2] || 0}&toAmount=${q[3] || 0}`
   );
@@ -79,37 +77,28 @@ export const Rates = async (query) => {
 export const TodayRates = async (query) => {
   const q = query?.queryKey;
   const { data } = await Axios.get(
-    `${baseurl}moneybusiness/gettodaysrate?fromCurrencyId=${
-      q[0] || 0
-    }&toCurrencyId=${q[1] || 0}`
+    `${baseurl}/gettodaysrate?fromCurrencyId=${q[0] || 0}&toCurrencyId=${
+      q[1] || 0
+    }`
   );
   return data;
 };
 
 export const createBeneficiary = async (body) => {
   console.log("🚀 ~ file: Dashboard.jsx:32 ~ createBeneficiary ~ body:", body);
-  const { data } = await Axios.post(
-    `${baseurl}moneybusiness/adduserbeneficiary`,
-    body
-  );
+  const { data } = await Axios.post(`${baseurl}/adduserbeneficiary`, body);
   return data;
 };
 
 export const createWallet = async (body) => {
-  const { data } = await Axios.post(
-    `${baseurl}moneybusiness/adduserwallet`,
-    body
-  );
+  const { data } = await Axios.post(`${baseurl}/adduserwallet`, body);
   return data;
 };
 export const sendMoney = async (body) => {
-  const { data } = await Axios.post(`${baseurl}moneybusiness/sm`, body);
+  const { data } = await Axios.post(`${baseurl}/sm`, body);
   return data;
 };
 export const sendAgentInvite = async (body) => {
-  const { data } = await Axios.post(
-    `${baseurl}moneybusiness/sendagentinvite`,
-    body
-  );
+  const { data } = await Axios.post(`${baseurl}/sendagentinvite`, body);
   return data;
 };

@@ -120,7 +120,7 @@ function Login() {
 
         return;
       }
-      localStorage.setItem("userDetails", JSON.stringify(data));
+      localStorage.setItem("userDetails", JSON.stringify(data?.data));
       navigate("/dashboard");
     },
     onError: (data) => {

@@ -1,4 +1,5 @@
 import { Table } from "@arco-design/web-react";
+import styled from "styled-components";
 const columns = [
   {
     title: "Name",
@@ -78,24 +79,36 @@ const data = [
   },
 ];
 
-const CustomTable = ({ Apidata, tableColumns }) => {
+const CustomTable = ({ Apidata, tableColumns, loading, noData }) => {
   return (
-    <Table
-      columns={tableColumns || columns}
-      data={Apidata || data}
-      expandedRowRender={(record) =>
-        `${record.name}'s address is ${record.address}`
-      }
-      rowSelection={{}}
-      onChange={(pagination, changedSorter) => {
-        console.log(changedSorter);
-      }}
-      scroll={{
-        x: 1600,
-        y: 400,
-      }}
-    />
+    <Content>
+      <Table
+        loading={loading}
+        noDataElement={noData}
+        columns={tableColumns || columns}
+        data={Apidata || data}
+        className="table3"
+        onChange={(pagination, changedSorter) => {
+          console.log(changedSorter);
+        }}
+        scroll={{
+          x: 1600,
+          y: 400,
+        }}
+      />
+    </Content>
   );
 };
 
 export default CustomTable;
+const Content = styled.div`
+  .table3 {
+    th {
+      padding: 0px;
+      font-size: 12px;
+    }
+    td {
+      padding: 20px;
+    }
+  }
+`;

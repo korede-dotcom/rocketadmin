@@ -11,14 +11,18 @@ import { TiArrowUnsorted, TiMediaRecord } from "react-icons/ti";
 import SearchInput from "../../reuseables/SearchInput";
 import CustomTable from "../../reuseables/CustomTable";
 import { useQuery } from "@tanstack/react-query";
-import { getPayoutClients } from "../../services/PayoutDashboard";
+import { getPayoutClientDashboard } from "../../services/PayoutDashboard";
 
 function ClientTable() {
   const [sortdate, setSortDate] = useState(0);
 
-  const { data: clients } = useQuery({
+  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+
+  console.log(userDetails);
+
+  const { data: clients, isLoading } = useQuery({
     queryKey: ["clients"],
-    queryFn: () => getPayoutClients(),
+    queryFn: () => getPayoutClientDashboard(userDetails?.userId),
   });
 
   console.log(clients);
@@ -26,118 +30,116 @@ function ClientTable() {
   const columns = [
     {
       title: "ACTIONS",
-      dataIndex: "name",
+      dataIndex: "action",
       fixed: "left",
-      width: 140,
-      sorter: {
+      /*   sorter: {
         compare: (a, b) => a.name - b.name,
         multiple: 1,
-      },
+      }, */
+      width: 130,
     },
     {
       title: "CLIENT ID",
-      dataIndex: "address",
+      dataIndex: "clientId",
+      width: 140,
     },
     {
       title: "ID VERIFICATION",
-      dataIndex: "email",
+      dataIndex: "idNumber",
+      width: 190,
     },
     {
       title: "NAME",
-      dataIndex: "other",
-      render: () => "Other",
+      dataIndex: "name",
+      width: 190,
+
+      //render: () => "Other",
     },
     {
       title: "ADDRESS",
-      dataIndex: "other1",
-      render: () => "Other 1",
+      dataIndex: "address",
+      //render: () => "Other 1",
       width: 420,
     },
     {
-      title: "EMAIL ID",
-      dataIndex: "other2",
-      render: () => "Other 2",
+      title: "EMAIL",
+      dataIndex: "email",
+      width: 320,
+      //render: () => "Other 2",
     },
     {
       title: "MOBILE NO",
-      dataIndex: "mobileNo",
+      dataIndex: "phone",
+      width: 150,
     },
     {
       title: "DATE ADDED",
       dataIndex: "dateAdded",
+      width: 220,
     },
     {
       title: "STATUS",
       dataIndex: "status",
-      fixed: "right",
-      width: 120,
+      width: 160,
     },
   ];
-  const data = [
-    {
-      key: "1",
-      name: "William Smith",
-      mobileNo: 27000,
-      dateAdded: "62 Park Road, London",
-      status: "william.smith@example.com",
-    },
-    {
-      key: "2",
-      name: "William Smith",
-      mobileNo: 27000,
-      dateAdded: "62 Park Road, London",
-      status: "william.smith@example.com",
-    },
-    {
-      key: "3",
-      name: "William Smith",
-      mobileNo: 27000,
-      dateAdded: "62 Park Road, London",
-      status: "william.smith@example.com",
-    },
-    {
-      key: "4",
-      name: "William Smith",
-      mobileNo: 27000,
-      dateAdded: "62 Park Road, London",
-      status: "william.smith@example.com",
-    },
-    {
-      key: "5",
-      name: "William Smith",
-      mobileNo: 27000,
-      dateAdded: "62 Park Road, London",
-      status: "william.smith@example.com",
-    },
-    {
-      key: "6",
-      name: "William Smith",
-      mobileNo: 27000,
-      dateAdded: "62 Park Road, London",
-      status: "william.smith@example.com",
-    },
-    {
-      key: "7",
-      name: "William Smith",
-      mobileNo: 27000,
-      dateAdded: "62 Park Road, London",
-      status: "william.smith@example.com",
-    },
-    {
-      key: "8",
-      name: "William Smith",
-      mobileNo: 27000,
-      dateAdded: "62 Park Road, London",
-      status: "william.smith@example.com",
-    },
-    {
-      key: "9",
-      name: "William Smith",
-      mobileNo: 27000,
-      dateAdded: "62 Park Road, London",
-      status: "william.smith@example.com",
-    },
-  ];
+
+  const newData = clients?.data?.allPayoutClients?.map((item) => {
+    return {
+      action: (
+        <p
+          onClick={() => {
+            console.log(item?.userId);
+          }}
+          style={{
+            color: "blue",
+            cursor: "pointer",
+          }}
+        >
+          View Details
+        </p>
+      ),
+      clientId: item?.userId,
+      idNumber: (
+        <div
+          style={{
+            padding: "8px 16px",
+            borderRadius: "10000px",
+            background: item?.isKYCCompleted ? "#63ff706c" : "#ff63634b",
+            color: item?.isKYCCompleted ? "green" : "red",
+            width: "fit-content",
+          }}
+        >
+          {item?.isKYCCompleted ? "Verified" : "Not Verified"}
+        </div>
+      ),
+      name: item?.companyName,
+      address: item?.address,
+      email: item?.email,
+      phone: item?.phone,
+      dateAdded: item?.lastUpdated,
+      status: (
+        <>
+          {" "}
+          <div
+            style={{
+              padding: "8px 16px",
+              borderRadius: "10000px",
+              background: item?.isEmailVerified ? "#63ff706c" : "#ff63634b",
+              color: item?.isEmailVerified ? "green" : "red",
+              width: "fit-content",
+              fontWeight: "700",
+            }}
+          >
+            {item?.isEmailVerified ? "Active" : "In Active"}
+          </div>
+        </>
+      ),
+    };
+  });
+
+  console.log(newData);
+
   return (
     <Content>
       <div className="tablecontent">
@@ -150,7 +152,12 @@ function ClientTable() {
         <div className="top">
           <SearchInput placeholder="Search Records" className="SearchRecords" />
         </div>
-        <CustomTable Apidata={data} tableColumns={columns} />
+        <CustomTable
+          noData={clients?.data?.allPayoutClients?.length}
+          loading={isLoading}
+          Apidata={newData}
+          tableColumns={columns}
+        />
 
         <div className="row">
           <span>Showing 1-5 of entries</span>

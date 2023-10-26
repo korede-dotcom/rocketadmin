@@ -25,280 +25,284 @@ import ManageIcon from "../../assets/icons/Manage";
 import PaymentType2 from "../../Graphs/PaymentType2";
 import TransactionsChart from "../../Graphs/TransactionsChart";
 import { useQuery } from "@tanstack/react-query";
-import { getPayoutDashboard } from "../../services/PayoutDashboard";
+import {
+  getPayoutClientDashboard,
+  getPayoutDashboard,
+} from "../../services/PayoutDashboard";
 import { useSearchParams } from "react-router-dom";
 function PayoutDashboard() {
-    const [userID, setUserID] = useState();
+  const [userID, setUserID] = useState();
+  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
 
-    //const [params] = useSearchParams()
-    const { data: payoutDashboard, refetch } = useQuery({
-        queryKey: ["payoutDashboard"],
-        queryFn: () => getPayoutDashboard(userID),
-    });
+  //const [params] = useSearchParams()
+  const { data: payoutDashboard } = useQuery({
+    queryKey: ["clients"],
+    queryFn: () => getPayoutClientDashboard(userDetails?.userId),
+  });
 
-    const id = userID;
+  const id = userID;
 
-    console.log(payoutDashboard);
+  console.log(payoutDashboard);
 
-    return (
-        <>
-            <BodyLayout>
-                <Content>
-                    <div className="content1">
-                        <div className="contside2">
-                            <div className="contside2down">
-                                <div className="contside2childdown">
-                                    <div
-                                        className=""
-                                        style={{
-                                            borderRight: "1px solid rgba(213, 219, 229, 1)",
-                                            marginLeft: "20px",
-                                        }}
-                                    >
-                                        <div
-                                            className=""
-                                            style={{
-                                                display: "flex",
-                                                alignItems: "center",
-                                                transform: "translateX(-2px)",
-                                            }}
-                                        >
-                                            <PersonIcon />
-                                            <div
-                                                style={{
-                                                    color: "#909090",
-                                                }}
-                                            >
-                                                Total Giveaways
-                                            </div>
-                                        </div>
-                                        <div style={{ fontSize: "40px", fontWeight: "600" }}>
-                                            200
-                                        </div>
-                                    </div>
-                                    <div
-                                        className=""
-                                        style={{
-                                            borderRight: "1px solid rgba(213, 219, 229, 1)",
-                                            marginLeft: "20px",
-                                        }}
-                                    >
-                                        <div
-                                            onClick={() => {
-                                                refetch(id);
-                                                setUserID(1);
-                                            }}
-                                            className=""
-                                            style={{
-                                                display: "flex",
-                                                alignItems: "center",
-                                                transform: "translateX(-2px)",
-                                            }}
-                                        >
-                                            <PersonIcon />
-                                            <div
-                                                style={{
-                                                    color: "#909090",
-                                                }}
-                                            >
-                                                {" "}
-                                                Total Giveaways
-                                            </div>
-                                        </div>
-                                        <div style={{ fontSize: "40px", fontWeight: "600" }}>
-                                            21
-                                        </div>
-                                    </div>
-                                    <div
-                                        className=""
-                                        style={{
-                                            borderRight: "1px solid rgba(213, 219, 229, 1)",
-                                            marginLeft: "20px",
-                                        }}
-                                    >
-                                        <div
-                                            className=""
-                                            style={{
-                                                display: "flex",
-                                                alignItems: "center",
-                                                transform: "translateX(-2px)",
-                                            }}
-                                        >
-                                            <GreenCardIcon />
-                                            <div
-                                                style={{
-                                                    color: "#909090",
-                                                }}
-                                            >
-                                                Total Transaction Count
-                                            </div>
-                                        </div>
-                                        <div style={{ fontSize: "40px", fontWeight: "600" }}>
-                                            191
-                                        </div>
-                                    </div>
-                                    <div
-                                        className=""
-                                        style={{
-                                            borderRight: "1px solid rgba(213, 219, 229, 1)",
-                                            marginLeft: "20px",
-                                        }}
-                                    >
-                                        <div
-                                            className=""
-                                            style={{
-                                                display: "flex",
-                                                alignItems: "center",
-                                                transform: "translateX(-2px)",
-                                            }}
-                                        >
-                                            <YellowCardIcon />
-                                            <div
-                                                style={{
-                                                    color: "#909090",
-                                                }}
-                                            >
-                                                Pending
-                                            </div>
-                                        </div>
-                                        <div style={{ fontSize: "40px", fontWeight: "600" }}>1</div>
-                                    </div>
-                                    <div
-                                        className=""
-                                        style={{
-                                            marginLeft: "20px",
-                                        }}
-                                    >
-                                        <div
-                                            className=""
-                                            style={{
-                                                display: "flex",
-                                                alignItems: "center",
-                                                transform: "translateX(-2px)",
-                                            }}
-                                        >
-                                            <DeleteIcon />
-                                            <div
-                                                style={{
-                                                    color: "#909090",
-                                                }}
-                                            >
-                                                Failed
-                                            </div>
-                                        </div>
-                                        <div style={{ fontSize: "40px", fontWeight: "600" }}>
-                                            18
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div
-                                        style={{
-                                            padding: "27px",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "space-between",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            cursor: "pointer",
-                                        }}
-                                    >
-                                        <NavigateIcon />
-                                        <div style={{ fontSize: "20px" }}>View Gateways</div>
-                                    </div>
-                                    <div
-                                        style={{
-                                            marginTop: "22px",
-                                            padding: "27px",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "space-between",
-                                            background: "white",
-                                            borderRadius: "10px",
-                                            cursor: "pointer",
-                                        }}
-                                    >
-                                        <ManageIcon />
-                                        <div style={{ fontSize: "20px" }}>Manage Clients</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+  return (
+    <>
+      <BodyLayout>
+        <Content>
+          <div className="content1">
+            <div className="contside2">
+              <div className="contside2down">
+                <div className="contside2childdown">
+                  <div
+                    className=""
+                    style={{
+                      borderRight: "1px solid rgba(213, 219, 229, 1)",
+                      marginLeft: "20px",
+                    }}
+                  >
+                    <div
+                      className=""
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        transform: "translateX(-2px)",
+                      }}
+                    >
+                      <PersonIcon />
+                      <div
+                        style={{
+                          color: "#909090",
+                        }}
+                      >
+                        Total Giveaways
+                      </div>
                     </div>
-                    {/* Bar Chart Components Stamp */}
-                    <div className="PaymentTypeChart">
-                        <div className="Payment">
-                            <div className="type">
-                                <p>Payout Type</p>
-                                <span>Shows a snapshot of payment types of your business</span>
-                            </div>
-                            <div className="paymentmethod">
-                                <div className="card">
-                                    <div className="color1"></div>
-                                    <span>Pay By Card</span>
-                                </div>
-                                <div className="card">
-                                    <div className="color2"></div>
-                                    <span>Pay By Cash</span>
-                                </div>
-                                <div className="card">
-                                    <div className="color3"></div>
-                                    <span>Bank Transfer</span>
-                                </div>
-                                <div className="card">
-                                    <div className="color4"></div>
-                                    <span>Pay By Bank</span>
-                                </div>
-                            </div>
-                            <PaymentType />
-                        </div>
-                        {/* Three Shold Stamp */}
-                        <div className="Payment">
-                            <div className="type">
-                                <p>Transactions</p>
-                                <span>Shows a snapshot of payment types of your business</span>
-                            </div>
-                            <div className="paymentmethod">
-                                <div className="card">
-                                    <div
-                                        className="color1"
-                                        style={{
-                                            background: "#46A246",
-                                        }}
-                                    ></div>
-                                    <span>Successful</span>
-                                </div>
-                                <div className="card">
-                                    <div
-                                        className="color2"
-                                        style={{
-                                            background: "#CBC7C6",
-                                        }}
-                                    ></div>
-                                    <span>Pending</span>
-                                </div>
-                                <div className="card">
-                                    <div
-                                        className="color3"
-                                        style={{
-                                            background: "#D94040",
-                                        }}
-                                    ></div>
-                                    <span>Failed</span>
-                                </div>
-                            </div>
-                            <TransactionsChart />
-                        </div>
+                    <div style={{ fontSize: "40px", fontWeight: "600" }}>
+                      200
                     </div>
+                  </div>
+                  <div
+                    className=""
+                    style={{
+                      borderRight: "1px solid rgba(213, 219, 229, 1)",
+                      marginLeft: "20px",
+                    }}
+                  >
+                    <div
+                      onClick={() => {
+                        refetch(id);
+                        setUserID(1);
+                      }}
+                      className=""
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        transform: "translateX(-2px)",
+                      }}
+                    >
+                      <PersonIcon />
+                      <div
+                        style={{
+                          color: "#909090",
+                        }}
+                      >
+                        {" "}
+                        Total Giveaways
+                      </div>
+                    </div>
+                    <div style={{ fontSize: "40px", fontWeight: "600" }}>
+                      21
+                    </div>
+                  </div>
+                  <div
+                    className=""
+                    style={{
+                      borderRight: "1px solid rgba(213, 219, 229, 1)",
+                      marginLeft: "20px",
+                    }}
+                  >
+                    <div
+                      className=""
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        transform: "translateX(-2px)",
+                      }}
+                    >
+                      <GreenCardIcon />
+                      <div
+                        style={{
+                          color: "#909090",
+                        }}
+                      >
+                        Total Transaction Count
+                      </div>
+                    </div>
+                    <div style={{ fontSize: "40px", fontWeight: "600" }}>
+                      191
+                    </div>
+                  </div>
+                  <div
+                    className=""
+                    style={{
+                      borderRight: "1px solid rgba(213, 219, 229, 1)",
+                      marginLeft: "20px",
+                    }}
+                  >
+                    <div
+                      className=""
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        transform: "translateX(-2px)",
+                      }}
+                    >
+                      <YellowCardIcon />
+                      <div
+                        style={{
+                          color: "#909090",
+                        }}
+                      >
+                        Pending
+                      </div>
+                    </div>
+                    <div style={{ fontSize: "40px", fontWeight: "600" }}>1</div>
+                  </div>
+                  <div
+                    className=""
+                    style={{
+                      marginLeft: "20px",
+                    }}
+                  >
+                    <div
+                      className=""
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        transform: "translateX(-2px)",
+                      }}
+                    >
+                      <DeleteIcon />
+                      <div
+                        style={{
+                          color: "#909090",
+                        }}
+                      >
+                        Failed
+                      </div>
+                    </div>
+                    <div style={{ fontSize: "40px", fontWeight: "600" }}>
+                      18
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style={{
+                      padding: "27px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      background: "white",
+                      borderRadius: "10px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <NavigateIcon />
+                    <div style={{ fontSize: "20px" }}>View Gateways</div>
+                  </div>
+                  <div
+                    style={{
+                      marginTop: "22px",
+                      padding: "27px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      background: "white",
+                      borderRadius: "10px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <ManageIcon />
+                    <div style={{ fontSize: "20px" }}>Manage Clients</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Bar Chart Components Stamp */}
+          <div className="PaymentTypeChart">
+            <div className="Payment">
+              <div className="type">
+                <p>Payout Type</p>
+                <span>Shows a snapshot of payment types of your business</span>
+              </div>
+              <div className="paymentmethod">
+                <div className="card">
+                  <div className="color1"></div>
+                  <span>Pay By Card</span>
+                </div>
+                <div className="card">
+                  <div className="color2"></div>
+                  <span>Pay By Cash</span>
+                </div>
+                <div className="card">
+                  <div className="color3"></div>
+                  <span>Bank Transfer</span>
+                </div>
+                <div className="card">
+                  <div className="color4"></div>
+                  <span>Pay By Bank</span>
+                </div>
+              </div>
+              <PaymentType />
+            </div>
+            {/* Three Shold Stamp */}
+            <div className="Payment">
+              <div className="type">
+                <p>Transactions</p>
+                <span>Shows a snapshot of payment types of your business</span>
+              </div>
+              <div className="paymentmethod">
+                <div className="card">
+                  <div
+                    className="color1"
+                    style={{
+                      background: "#46A246",
+                    }}
+                  ></div>
+                  <span>Successful</span>
+                </div>
+                <div className="card">
+                  <div
+                    className="color2"
+                    style={{
+                      background: "#CBC7C6",
+                    }}
+                  ></div>
+                  <span>Pending</span>
+                </div>
+                <div className="card">
+                  <div
+                    className="color3"
+                    style={{
+                      background: "#D94040",
+                    }}
+                  ></div>
+                  <span>Failed</span>
+                </div>
+              </div>
+              <TransactionsChart />
+            </div>
+          </div>
 
-                    {/* Transaction Chart Stamp */}
+          {/* Transaction Chart Stamp */}
 
-                    <Transferlist />
-                    <NewCustomerList />
-                </Content>
-            </BodyLayout>
-        </>
-    );
+          <Transferlist />
+          <NewCustomerList />
+        </Content>
+      </BodyLayout>
+    </>
+  );
 }
 
 const Content = styled.div`
