@@ -109,11 +109,15 @@ function PayoutDashboard() {
                         }}
                       >
                         {" "}
-                        Total Giveaways
+                        Total Transaction Count
                       </div>
                     </div>
                     <div style={{ fontSize: "40px", fontWeight: "600" }}>
-                      21
+                      {kFormatter4(
+                        cardDetails?.successful +
+                          cardDetails?.pending +
+                          cardDetails?.failed
+                      )}
                     </div>
                   </div>
                   <div
@@ -137,7 +141,7 @@ function PayoutDashboard() {
                           color: "#909090",
                         }}
                       >
-                        Total Transaction Count
+                        Successful
                       </div>
                     </div>
                     <div style={{ fontSize: "40px", fontWeight: "600" }}>

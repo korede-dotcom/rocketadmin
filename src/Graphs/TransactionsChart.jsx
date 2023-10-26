@@ -10,8 +10,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-function TransactionsChart() {
-  const data = [
+function TransactionsChart({ apiData }) {
+  const data = apiData || [
     {
       name: "Apr",
       uv: 6000,
