@@ -21,6 +21,7 @@ import SendMoney from "./Routes/SendMoney";
 import Beneficiary from "./Routes/Beneficiary";
 import PayoutDashboard from "./Routes/Payout/PayoutDashboard";
 import ClientsPage from "./Routes/Payout/Clients";
+import ClientDetailsPage from "./Routes/Payout/ClientDetails";
 function App() {
   return (
     <Router>
@@ -32,6 +33,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard-payout" element={<PayoutDashboard />} />
           <Route path="/clients" element={<ClientsPage />} />
+          <Route path="/client-detail" element={<ClientDetailsPage />} />
           <Route path="/agent" element={<Agent />} />
           <Route path="/customers" element={<Customers />} />
           <Route path="/actionrequired" element={<ActionRequired />} />

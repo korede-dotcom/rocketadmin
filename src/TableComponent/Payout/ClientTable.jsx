@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import {
   AiOutlineArrowRight,
@@ -20,7 +21,11 @@ function ClientTable() {
 
   console.log(userDetails);
 
-  const { data: clients, isLoading } = useQuery({
+  const {
+    data: clients,
+    isLoading,
+    isFetching,
+  } = useQuery({
     queryKey: ["clients"],
     queryFn: () => getPayoutClientDashboard(userDetails?.userId),
   });
@@ -87,17 +92,24 @@ function ClientTable() {
   const newData = clients?.data?.allPayoutClients?.map((item) => {
     return {
       action: (
-        <p
-          onClick={() => {
-            console.log(item?.userId);
-          }}
+        <Link
           style={{
-            color: "blue",
-            cursor: "pointer",
+            textDecoration: "none",
           }}
+          to={`/client-detail?userId=${item?.userId}`}
         >
-          View Details
-        </p>
+          <p
+            onClick={() => {
+              console.log(item?.userId);
+            }}
+            style={{
+              color: "blue",
+              cursor: "pointer",
+            }}
+          >
+            View Details
+          </p>
+        </Link>
       ),
       clientId: item?.userId,
       idNumber: (
@@ -108,6 +120,7 @@ function ClientTable() {
             background: item?.isKYCCompleted ? "#63ff706c" : "#ff63634b",
             color: item?.isKYCCompleted ? "green" : "red",
             width: "fit-content",
+            fontWeight: "700",
           }}
         >
           {item?.isKYCCompleted ? "Verified" : "Not Verified"}
@@ -154,7 +167,7 @@ function ClientTable() {
         </div>
         <CustomTable
           noData={clients?.data?.allPayoutClients?.length}
-          loading={isLoading}
+          loading={isLoading || isFetching}
           Apidata={newData}
           tableColumns={columns}
         />
